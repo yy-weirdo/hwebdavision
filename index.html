@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>INR画像圧縮ツール（笑）</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.17.0/dist/tf.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>INR画像圧縮サイト</h1>
+    <p class="subtitle">画像をweighに学習させて圧縮します</p>
+    <p class="subtitle">※あくまで趣味の範囲でやっていますので精度が低いのはご了承ください</p>
+
+    <div class="controls">
+      <label class="file-btn">
+        画像を選択する
+        <input type="file" id="imageInput" accept="image/*">
+      </label>
+      <button id="trainBtn" disabled>圧縮開始</button>
+      <button id="stopBtn" disabled>ストップ</button>
+      <button id="downloadBtn" disabled>圧縮データ(.json)を保存</button>
+      <label class="file-btn" style="background-color: #2563eb;">
+        JSONから復元
+        <input type="file" id="jsonInput" accept=".json">
+      </label>
+    </div>
+
+    <div class="status-bar">
+      <span id="statusText">・待機中 画像を選択して下さい</span>
+      <span id="epochText">Epoch: 0</span>
+    </div>
+
+    <div class="canvas-grid">
+      <div class="canvas-box">
+        <h3>元の画像 (64×64にリサイズ)</h3>
+        <canvas id="originalCanvas" width="64" height="64"></canvas>
+        <p id="origSizeText">元サイズ: - KB</p>
+      </div>
+      <div class="canvas-box">
+        <h3>AIが再現した画像 (256×256に拡大出力)</h3>
+        <canvas id="outputCanvas" width="256" height="256"></canvas>
+        <p id="compSizeText">AI重みサイズ: - KB</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
